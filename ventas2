@@ -1,0 +1,207 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: VentasScreen(),
+    );
+  }
+}
+
+class VentasScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Color(0xFFE5F8FB),
+      body: Row(
+        children: [
+          Container(
+            width: 80,
+            decoration: BoxDecoration(
+              color: Color(0xFF0A1F44),
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(height: 60),
+                IconButton(
+                  icon: Icon(Icons.dashboard, color: Colors.white, size: 30),
+                  onPressed: () {},
+                ),
+                SizedBox(height: 30),
+                IconButton(
+                  icon: Icon(Icons.shopping_cart, color: Colors.white, size: 30),
+                  onPressed: () {},
+                ),
+                SizedBox(height: 30),
+                IconButton(
+                  icon: Icon(Icons.credit_card, color: Colors.white, size: 30),
+                  onPressed: () {},
+                ),
+                SizedBox(height: 30),
+                IconButton(
+                  icon: Icon(Icons.bar_chart, color: Colors.white, size: 30),
+                  onPressed: () {},
+                ),
+              ],
+            ),
+          ),
+          Expanded(
+            child: Column(
+              children: [
+                Container(
+                  padding: EdgeInsets.all(20),
+                  decoration: BoxDecoration(
+                    color: Color(0xFF0A1F44),
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(30),
+                      bottomRight: Radius.circular(30),
+                    ),
+                  ),
+                  child: Row(
+                    children: [
+                      Image.asset(
+                        'assets/logoLM.jpg',
+                        height: 80,
+                      ),
+                      SizedBox(width: 20),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Libro Mayor',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 24,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          SizedBox(height: 10),
+                          Text(
+                            'Gestión de Productos\nRegistro de Compras\nRegistro de Ventas\nGeneración de Informes',
+                            style: TextStyle(
+                              color: Colors.white70,
+                              fontSize: 16,
+                            ),
+                          ),
+                          SizedBox(height: 10),
+                          Text(
+                            'Todo en un solo lugar',
+                            style: TextStyle(
+                              color: Colors.white70,
+                              fontSize: 14,
+                            ),
+                          ),
+                        ],
+                      ),
+                      Spacer(),
+                      Icon(
+                        Icons.more_vert,
+                        color: Colors.white,
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 20),
+                Text(
+                  'Agosto',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                SizedBox(height: 10),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: List.generate(5, (index) {
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: CircleAvatar(
+                        backgroundColor: index == 2 ? Color(0xFF1CC6C6) : Colors.white,
+                        radius: 25,
+                        child: Text(
+                          '${index + 2}',
+                          style: TextStyle(
+                            color: index == 2 ? Colors.white : Colors.black,
+                            fontSize: 20,
+                          ),
+                        ),
+                      ),
+                    );
+                  }),
+                ),
+                SizedBox(height: 20),
+                Expanded(
+                  child: ListView(
+                    padding: EdgeInsets.symmetric(horizontal: 30),
+                    children: [
+                      buildMenuButton('Agregar Nueva Venta'),
+                      buildMenuButton('Registro de Ventas'),
+                      buildDisabledButton('Total Mensual'),
+                      buildMenuButton('Visualizar Ventas'),
+                      buildMenuButton('Crear Credito'),
+                      buildMenuButton('Gestión de Deudas Pendientes'),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget buildMenuButton(String text) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10),
+      child: Container(
+        height: 50,
+        decoration: BoxDecoration(
+          color: Color(0xFFB8F1F1),
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Center(
+          child: Text(
+            text,
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 18,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget buildDisabledButton(String text) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10),
+      child: Container(
+        height: 50,
+        decoration: BoxDecoration(
+          color: Colors.grey.shade400,
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Center(
+          child: Text(
+            text,
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 18,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
